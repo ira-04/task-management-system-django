@@ -28,11 +28,6 @@
     <a id="add-link" href="{% url 'task-create' %}">&#x2b;</a>
     {% endif %}
 </div>
-
-<!-- here -->
-
-
-
 <div id="tasklist" class="task-items-wrapper">
     {% for task in tasks %}
     <div class="task-wrapper" data-position="{{task.pk}}">
@@ -52,9 +47,6 @@
             <p>{{ task.description }}</p>
             <p>Deadline: {{ task.deadline }}</p>
             <p>Priority: {{ task.priority }}</p>
-            <!-- {% if task.deadline < now and not task.complete %}
-                <p class="missed">Missed</p>
-            {% endif %} -->
         </div>
     </div>
 

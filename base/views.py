@@ -115,4 +115,5 @@ class TaskListView(ListView):
     context_object_name = 'tasks'
 
     def get_queryset(self):
-        return Task.objects.filter(complete=False).order_by('deadline', 'priority')
+        # return Task.objects.filter(complete=False)
+        return Task.objects
