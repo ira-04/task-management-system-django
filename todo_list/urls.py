@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+admin.site.site_header = "Task Manager Admin"
+admin.site.site_title = "Task Manager Admin Portal"
+admin.site.index_title = "Welcome to Task PRO"
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('base.urls')),

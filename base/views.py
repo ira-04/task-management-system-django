@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
@@ -15,7 +15,7 @@ from django.shortcuts import redirect
 from django.db import transaction
 
 from .models import Task
-from .forms import PositionForm
+# from .forms import PositionForm
 
 
 class CustomLoginView(LoginView):
@@ -84,7 +84,10 @@ class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
     fields = ['title', 'description', 'deadline', 'priority', 'complete']
     success_url = reverse_lazy('tasks')
-
+    # def get_object(self, queryset=None):
+    #     # Get the task object based on the pk provided in the URL
+    #     pk = self.kwargs.get('pk')
+    #     return get_object_or_404(Task, pk=pk)
 
 class DeleteView(LoginRequiredMixin, DeleteView):
     model = Task
@@ -94,17 +97,17 @@ class DeleteView(LoginRequiredMixin, DeleteView):
         owner = self.request.user
         return self.model.objects.filter(user=owner)
 
-class TaskReorder(View):
-    def post(self, request):
-        form = PositionForm(request.POST)
+# class TaskReorder(View):
+#     def post(self, request):
+#         form = PositionForm(request.POST)
 
-        if form.is_valid():
-            positionList = form.cleaned_data["position"].split(',')
+#         if form.is_valid():
+#             positionList = form.cleaned_data["position"].split(',')
 
-            with transaction.atomic():
-                self.request.user.set_task_order(positionList)
+#             with transaction.atomic():
+#                 self.request.user.set_task_order(positionList)
 
-        return redirect(reverse_lazy('tasks'))
+#         return redirect(reverse_lazy('tasks'))
 
 class TaskListView(ListView):
     model = Task
@@ -112,4 +115,4 @@ class TaskListView(ListView):
     context_object_name = 'tasks'
 
     def get_queryset(self):
-        return Task.objects.filter(done=False).order_by('deadline', '-priority')
+        return Task.objects.filter(complete=False).order_by('deadline', 'priority')
