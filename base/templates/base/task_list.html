@@ -34,10 +34,19 @@
         <div class="task-title">
             {% if task.complete %}
             <div class="task-complete-icon"></div>
-            <i><s><a href="{% url 'task-update' task.id %}">{{ task.title }}</a></s></i> 
+            <i><s><a href="{% url 'task-update' task.pk %}">{{ task.title }}</a></s></i> 
+            <!-- <form action="{% url 'task-update' task.id%}" method="post">
+                {% csrf_token %}
+                <input type="submit" value="update">
+            </form> -->
+            <a href="{% url 'task-delete' task.id %}">&#x1F5D1;</a>
             {% else %}
             <div class="task-incomplete-icon"></div>
-            <a href="{% url 'task-update' task.id %}">{{ task.title }}</a>
+            <a href="{% url 'task-update' task.pk %}">{{ task.title }}</a>
+            <!-- <form action="{% url 'task-update' task.id%}" method="post">
+                {% csrf_token %}
+                <input type="submit" value="update">
+            </form> -->
             <!-- Add delete link here -->
             <a href="{% url 'task-delete' task.id %}">&#x1F5D1;</a>
             {% endif %}
@@ -47,6 +56,8 @@
             <p>{{ task.description }}</p>
             <p>Deadline: {{ task.deadline }}</p>
             <p>Priority: {{ task.priority }}</p>
+
+
         </div>
     </div>
 

@@ -32,4 +32,5 @@ class Task(models.Model):
         return self.title
 
     class Meta:
-        order_with_respect_to = 'user'
+        order_with_respect_to = 'deadline'
+        # ordering = ["deadline"]

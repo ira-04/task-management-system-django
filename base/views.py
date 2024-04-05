@@ -84,10 +84,7 @@ class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
     fields = ['title', 'description', 'deadline', 'priority', 'complete']
     success_url = reverse_lazy('tasks')
-    # def get_object(self, queryset=None):
-    #     # Get the task object based on the pk provided in the URL
-    #     pk = self.kwargs.get('pk')
-    #     return get_object_or_404(Task, pk=pk)
+   
 
 class DeleteView(LoginRequiredMixin, DeleteView):
     model = Task
