@@ -31,33 +31,33 @@
 <div id="tasklist" class="task-items-wrapper">
     {% for task in tasks %}
     <div class="task-wrapper" data-position="{{task.pk}}">
-        <div class="task-title">
+        <!-- <div class="task-title">
             {% if task.complete %}
             <div class="task-complete-icon"></div>
-            <i><s><a href="{% url 'task-update' task.pk %}">{{ task.title }}</a></s></i> 
-            <!-- <form action="{% url 'task-update' task.id%}" method="post">
-                {% csrf_token %}
-                <input type="submit" value="update">
-            </form> -->
+            <i><s><a href="{% url 'task-update' task.id %}">{{ task}}</a></s></i> 
             <a href="{% url 'task-delete' task.id %}">&#x1F5D1;</a>
             {% else %}
             <div class="task-incomplete-icon"></div>
             <a href="{% url 'task-update' task.pk %}">{{ task.title }}</a>
-            <!-- <form action="{% url 'task-update' task.id%}" method="post">
-                {% csrf_token %}
-                <input type="submit" value="update">
-            </form> -->
-            <!-- Add delete link here -->
             <a href="{% url 'task-delete' task.id %}">&#x1F5D1;</a>
             {% endif %}
+        </div> -->
+        <div class="task-title">
+            {% if task.complete %}
+            <div class="task-complete-icon"></div>
+            <i><s><a href="{% url 'task-update' task.id %}">{{task}}</a></s></i> {% else %}
+            <div class="task-incomplete-icon"></div>
+            <a href="{% url 'task-update' task.id %}">{{task}}</a> {% endif %}
+        </div>
+        <div class="task-controls">
+            <a class="delete-link" href="{% url 'task-delete' task.id %}">&#215;</a>
+            
         </div>
         <div class="task {% if task.deadline < now and not task.complete %} overdue {% endif %}">
             <h3>Task:{{ task.title }}</h3>
             <p>{{ task.description }}</p>
             <p>Deadline: {{ task.deadline }}</p>
             <p>Priority: {{ task.priority }}</p>
-
-
         </div>
     </div>
 

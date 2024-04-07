@@ -14,17 +14,8 @@ class Task(models.Model):
     ]
     title = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
-    # deadline = models.DateTimeField(null=True, blank=True)  
-    # PRIORITY_CHOICES = [
-    #     ('LOW', 'Low'),
-    #     ('MEDIUM', 'Medium'),
-    #     ('HIGH', 'High'),
-    # ]
-    # priority = models.CharField(max_length=10, choices=PRIORITY_CHOICES, default='MEDIUM')  
-    # deadline = models.DateTimeField()
     deadline = models.DateTimeField(default=timezone.now() + timezone.timedelta(days=1))  # Set default to one day from now
     priority = models.CharField(max_length=10, choices=PRIORITY_CHOICES, default='low')
-    # done = models.BooleanField(default=False)
     complete = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
 

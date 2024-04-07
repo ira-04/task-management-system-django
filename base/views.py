@@ -15,6 +15,7 @@ from django.shortcuts import redirect
 from django.db import transaction
 
 from .models import Task
+# from .forms import MyForm
 # from .forms import PositionForm
 
 
@@ -106,11 +107,11 @@ class DeleteView(LoginRequiredMixin, DeleteView):
 
 #         return redirect(reverse_lazy('tasks'))
 
-class TaskListView(ListView):
-    model = Task
-    template_name = 'task_list.html'
-    context_object_name = 'tasks'
+# class TaskListView(ListView):
+#     model = Task
+#     template_name = 'task_list.html'
+#     context_object_name = 'tasks'
 
-    def get_queryset(self):
-        # return Task.objects.filter(complete=False)
-        return Task.objects
+#     def get_queryset(self):
+#         # return Task.objects.filter(complete=False)
+#         return Task.objects
